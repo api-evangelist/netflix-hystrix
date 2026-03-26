@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/netflix-hystrix/json-schema/hystrix-command-configuration.json",
+  "title": "Netflix Hystrix Command Configuration",
+  "description": "JSON Schema for HystrixCommand configuration properties used via Archaius or application properties.",
+  "type": "object",
+  "properties": {
+    "hystrix": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "object",
+          "properties": {
+            "default": {
+              "$ref": "#/$defs/HystrixCommandProperties"
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/HystrixCommandProperties"
+          }
+        },
+        "collapser": {
+          "type": "object",
+          "properties": {
+            "default": {
+              "$ref": "#/$defs/HystrixCollapserProperties"
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/HystrixCollapserProperties"
+          }
+        },
+        "threadpool": {
+          "type": "object",
+          "properties": {
+            "default": {
+              "$ref": "#/$defs/HystrixThreadPoolProperties"
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/HystrixThreadPoolProperties"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "HystrixCommandProperties": {
+      "type": "object",
+      "properties": {
+        "execution": {
+          "type": "object",
+          "properties": {
+            "isolation": {
+              "type": "object",
+              "properties": {
+                "strategy": {
+                  "type": "string",
+                  "enum": ["THREAD", "SEMAPHORE"],
+                  "default": "THREAD",
+                  "description": "Isolation strategy for HystrixCommand execution."
+                },
+                "thread": {
+                  "type": "object",
+                  "properties": {
+                    "timeoutInMilliseconds": {
+                      "type": "integer",
+                      "default": 1000,
+                      "description": "Timeout for command execution in milliseconds."
+                    },
+                    "interruptOnTimeout": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Whether to interrupt execution on timeout."
+                    },
+                    "interruptOnCancel": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether to interrupt execution on cancellation."
+                    }
+                  }
+                },
+                "semaphore": {
+                  "type": "object",
+                  "properties": {
+                    "maxConcurrentRequests": {
+                      "type": "integer",
+                      "default": 10,
+                      "description": "Maximum concurrent requests when using semaphore isolation."
+                    }
+                  }
+                }
+              }
+            },
+            "timeout": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether execution timeout is enabled."
+                }
+              }
+            }
+          }
+        },
+        "fallback": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether fallback is enabled."
+            },
+            "isolation": {
+              "type": "object",
+              "properties": {
+                "semaphore": {
+                  "type": "object",
+                  "properties": {
+                    "maxConcurrentRequests": {
+                      "type": "integer",
+                      "default": 10,
+                      "description": "Maximum concurrent fallback requests."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "circuitBreaker": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether the circuit breaker is enabled."
+            },
+            "requestVolumeThreshold": {
+              "type": "integer",
+              "default": 20,
+              "description": "Minimum number of requests in a rolling window before tripping."
+            },
+            "sleepWindowInMilliseconds": {
+              "type": "integer",
+              "default": 5000,
+              "description": "Time to wait before allowing a single test request through."
+            },
+            "errorThresholdPercentage": {
+              "type": "integer",
+              "default": 50,
+              "description": "Error percentage at which the circuit breaker trips."
+            },
+            "forceOpen": {
+              "type": "boolean",
+              "default": false,
+              "description": "Force the circuit breaker to remain open."
+            },
+            "forceClosed": {
+              "type": "boolean",
+              "default": false,
+              "description": "Force the circuit breaker to remain closed."
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "rollingStats": {
+              "type": "object",
+              "properties": {
+                "timeInMilliseconds": {
+                  "type": "integer",
+                  "default": 10000,
+                  "description": "Duration of the rolling statistical window."
+                },
+                "numBuckets": {
+                  "type": "integer",
+                  "default": 10,
+                  "description": "Number of buckets in the rolling statistical window."
+                }
+              }
+            },
+            "rollingPercentile": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Whether rolling percentile metrics are enabled."
+                },
+                "timeInMilliseconds": {
+                  "type": "integer",
+                  "default": 60000,
+                  "description": "Duration of the rolling percentile window."
+                },
+                "numBuckets": {
+                  "type": "integer",
+                  "default": 6,
+                  "description": "Number of buckets in the rolling percentile window."
+                },
+                "bucketSize": {
+                  "type": "integer",
+                  "default": 100,
+                  "description": "Maximum number of values stored in each bucket."
+                }
+              }
+            },
+            "healthSnapshot": {
+              "type": "object",
+              "properties": {
+                "intervalInMilliseconds": {
+                  "type": "integer",
+                  "default": 500,
+                  "description": "Interval for health snapshot calculation."
+                }
+              }
+            }
+          }
+        },
+        "requestCache": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether request caching is enabled."
+            }
+          }
+        },
+        "requestLog": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether request logging is enabled."
+            }
+          }
+        }
+      }
+    },
+    "HystrixCollapserProperties": {
+      "type": "object",
+      "properties": {
+        "maxRequestsInBatch": {
+          "type": "integer",
+          "description": "Maximum number of requests allowed in a batch."
+        },
+        "timerDelayInMilliseconds": {
+          "type": "integer",
+          "default": 10,
+          "description": "Delay before a batch is executed."
+        },
+        "requestCache": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      }
+    },
+    "HystrixThreadPoolProperties": {
+      "type": "object",
+      "properties": {
+        "coreSize": {
+          "type": "integer",
+          "default": 10,
+          "description": "Core thread pool size."
+        },
+        "maximumSize": {
+          "type": "integer",
+          "default": 10,
+          "description": "Maximum thread pool size."
+        },
+        "maxQueueSize": {
+          "type": "integer",
+          "default": -1,
+          "description": "Maximum queue size (-1 for SynchronousQueue)."
+        },
+        "queueSizeRejectionThreshold": {
+          "type": "integer",
+          "default": 5,
+          "description": "Queue size rejection threshold."
+        },
+        "keepAliveTimeMinutes": {
+          "type": "integer",
+          "default": 1,
+          "description": "Keep-alive time for excess threads in minutes."
+        },
+        "allowMaximumSizeToDivergeFromCoreSize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether maximumSize can be larger than coreSize."
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "rollingStats": {
+              "type": "object",
+              "properties": {
+                "timeInMilliseconds": {
+                  "type": "integer",
+                  "default": 10000
+                },
+                "numBuckets": {
+                  "type": "integer",
+                  "default": 10
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -40,7 +40,10 @@ apis:
       - Java
       - Microservices
       - Maintenance Mode
-    properties: []
+    properties:
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/netflix-hystrix/refs/heads/main/json-schema/hystrix-command-configuration.json
 common:
   - type: Website
     url: https://github.com/Netflix/Hystrix
