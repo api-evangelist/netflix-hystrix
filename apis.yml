@@ -1,0 +1,28 @@
+aid: netflix-hystrix
+name: Netflix Hystrix
+description: >-
+  Netflix Hystrix is a latency and fault tolerance library designed to isolate points of access to remote systems and provide fallback options.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Microservices
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/netflix-hystrix/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: netflix-hystrix:netflix-hystrix
+    name: Netflix Hystrix
+    description: >-
+      Netflix Hystrix is a latency and fault tolerance library designed to isolate points of access to remote systems and provide fallback options.
+    humanURL: https://github.com/api-evangelist/netflix-hystrix
+    tags:
+      - Microservices
+    properties: []
+common:
+  - type: Website
+    url: https://github.com/api-evangelist/netflix-hystrix
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
