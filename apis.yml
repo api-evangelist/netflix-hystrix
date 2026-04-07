@@ -9,14 +9,14 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Fault Tolerance
   - Circuit Breaker
-  - Latency
-  - Resilience
-  - Netflix
+  - Fault Tolerance
   - Java
-  - Microservices
+  - Latency
   - Maintenance Mode
+  - Microservices
+  - Netflix
+  - Resilience
 url: >-
   https://raw.githubusercontent.com/api-evangelist/netflix-hystrix/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -32,14 +32,14 @@ apis:
       distributed systems. Now in maintenance mode.
     humanURL: https://github.com/Netflix/Hystrix
     tags:
-      - Fault Tolerance
       - Circuit Breaker
-      - Latency
-      - Resilience
-      - Netflix
+      - Fault Tolerance
       - Java
-      - Microservices
+      - Latency
       - Maintenance Mode
+      - Microservices
+      - Netflix
+      - Resilience
     properties:
       - type: JSONSchema
         url: >-
