@@ -49,7 +49,7 @@ common:
     url: https://github.com/Netflix/Hystrix
   - type: Documentation
     url: https://github.com/Netflix/Hystrix/wiki
-  - type: Getting Started
+  - type: GettingStarted
     url: https://github.com/Netflix/Hystrix/wiki/Getting-Started
   - type: GitHub Org
     url: https://github.com/Netflix
