@@ -51,13 +51,13 @@ common:
     url: https://github.com/Netflix/Hystrix/wiki
   - type: GettingStarted
     url: https://github.com/Netflix/Hystrix/wiki/Getting-Started
-  - type: GitHub Org
+  - type: GitHubOrg
     url: https://github.com/Netflix
   - type: Javadoc
     url: http://netflix.github.com/Hystrix/javadoc
   - type: Issues
     url: https://github.com/Netflix/Hystrix/issues
-  - type: Releases
+  - type: ReleaseNotes
     url: https://github.com/Netflix/Hystrix/releases
 maintainers:
   - FN: Kin Lane
